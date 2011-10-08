@@ -13,7 +13,7 @@ namespace :parallel do
 
   desc "drop test databases via db:drop --> parallel:drop[num_cpus]"
   task :drop, :count do |t,args|
-    run_in_parallel('rake db:drop RAILS_ENV=test', args)
+    run_in_parallel('rake mongo:drop RAILS_ENV=test', args)
   end
 
   desc "update test databases by dumping and loading --> parallel:prepare[num_cpus]"
@@ -32,7 +32,7 @@ namespace :parallel do
   # when dumping/resetting takes too long
   desc "update test databases via db:migrate --> parallel:migrate[num_cpus]"
   task :migrate, :count do |t,args|
-    run_in_parallel('rake db:migrate RAILS_ENV=test', args)
+    run_in_parallel('rake mongoid:migrate RAILS_ENV=test', args)
   end
 
   # just load the schema (good for integration server <-> no development db)
